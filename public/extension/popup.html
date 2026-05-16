@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════════════════════ -->
+  <div class="pg-header">
+    <div class="pg-logo">
+      <div class="pg-logo-icon">
+        <!-- Shield SVG icon -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.35C17.25 23.15 21 18.25 21 13V7L12 2z"
+                fill="rgba(6,182,212,0.25)" stroke="#06b6d4" stroke-width="1.5"/>
+          <path d="M9 12l2 2 4-4" stroke="#06b6d4" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="pg-logo-name">PhishGuard</div>
+        <div class="pg-logo-sub">Real-Time Protection v1.0</div>
+      </div>
+    </div>
+    <div class="pg-header-right">
+      <div id="pg-dot" class="pg-dot live" title="Protection Active"></div>
+      <button id="pg-settings" class="pg-icon-btn" title="Settings">⚙</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CURRENT URL BAR
+  ════════════════════════════════════════════════════════ -->
+  <div class="pg-url-bar">
+    <span class="pg-url-icon">🔍</span>
+    <span id="pg-url" class="pg-url-text">Detecting current tab…</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCANNING VIEW
+  ════════════════════════════════════════════════════════ -->
+  <div id="pg-scanning" class="pg-scanning">
+    <div class="pg-scan-anim">
+      <div class="pg-spin-ring"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.35C17.25 23.15 21 18.25 21 13V7L12 2z"
+              fill="rgba(6,182,212,0.3)" stroke="#06b6d4" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="pg-scan-label">Analyzing URL…</div>
+    <div class="pg-scan-steps">
+      <div class="pg-scan-step active" id="step-1">▸ Normalizing &amp; decoding URL</div>
+      <div class="pg-scan-step" id="step-2">▸ Running ML detection engine</div>
+      <div class="pg-scan-step" id="step-3">▸ Querying VirusTotal / URLHaus</div>
+      <div class="pg-scan-step" id="step-4">▸ WHOIS &amp; DNS analysis</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       RESULT VIEW
+  ════════════════════════════════════════════════════════ -->
+  <div id="pg-result" class="pg-result hidden">
+
+    <!-- Risk Gauge Card -->
+    <div class="pg-risk-card">
+      <div class="pg-gauge">
+        <svg width="108" height="72" viewBox="0 0 108 72">
+          <!-- Background arc: 120° → 60° (300° sweep through top) -->
+          <path id="pg-gauge-bg"
+                d="M 27 63 A 45 45 0 1 1 81 63"
+                fill="none" stroke="#1e293b" stroke-width="9" stroke-linecap="round"/>
+          <!-- Filled arc (updated by JS) -->
+          <path id="pg-gauge-fill" d="" fill="none"
+                stroke="#22c55e" stroke-width="9" stroke-linecap="round"/>
+          <!-- Score value -->
+          <text id="pg-score-val" x="54" y="50" text-anchor="middle"
+                fill="#22c55e" font-size="20" font-weight="bold" font-family="monospace">0</text>
+          <text x="54" y="63" text-anchor="middle"
+                fill="#64748b" font-size="7.5" font-family="sans-serif">RISK SCORE</text>
+        </svg>
+      </div>
+
+      <div class="pg-risk-info">
+        <span id="pg-badge" class="pg-badge safe">LEGITIMATE</span>
+        <span id="pg-conf" class="pg-conf">97.2% confidence</span>
+        <!-- Brand impersonation warning (hidden unless detected) -->
+        <div id="pg-brand-warn" class="pg-brand-warn hidden">
+          <span>🎯</span>
+          <span id="pg-brand-name">Impersonating PayPal</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Metrics Row -->
+    <div class="pg-metrics">
+      <div class="pg-metric">
+        <div id="m-ssl-icon" class="pg-metric-icon">🔒</div>
+        <div class="pg-metric-lbl">SSL</div>
+        <div id="m-ssl-val" class="pg-metric-val safe">Valid</div>
+      </div>
+      <div class="pg-metric">
+        <div id="m-age-icon" class="pg-metric-icon">📅</div>
+        <div class="pg-metric-lbl">Age</div>
+        <div id="m-age-val" class="pg-metric-val safe">—</div>
+      </div>
+      <div class="pg-metric">
+        <div id="m-vt-icon" class="pg-metric-icon">🛡</div>
+        <div class="pg-metric-lbl">VT</div>
+        <div id="m-vt-val" class="pg-metric-val safe">0/90</div>
+      </div>
+      <div class="pg-metric">
+        <div id="m-feeds-icon" class="pg-metric-icon">📋</div>
+        <div class="pg-metric-lbl">Feeds</div>
+        <div id="m-feeds-val" class="pg-metric-val safe">Clean</div>
+      </div>
+    </div>
+
+    <!-- Threat Signals -->
+    <div id="pg-signals-section" class="hidden">
+      <div class="pg-section-title danger">
+        <span>⚠</span> Threat Indicators
+        <span id="pg-signals-count" class="pg-count-badge">0</span>
+      </div>
+      <ul id="pg-signals-list" class="pg-signals-list"></ul>
+    </div>
+
+    <!-- Attack Vector Badges -->
+    <div id="pg-vectors-section" class="hidden">
+      <div id="pg-vectors-list" class="pg-vectors"></div>
+    </div>
+
+    <!-- Positive Legitimacy Signals (shown for safe sites) -->
+    <div id="pg-pos-section" class="hidden">
+      <div class="pg-section-title safe">
+        <span>✓</span> Legitimacy Signals
+      </div>
+      <ul id="pg-pos-list" class="pg-pos-list"></ul>
+    </div>
+
+    <!-- AI Verdict -->
+    <div id="pg-verdict-section" class="hidden">
+      <p id="pg-verdict" class="pg-verdict safe"></p>
+    </div>
+
+  </div><!-- /pg-result -->
+
+  <div class="pg-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCAN HISTORY
+  ════════════════════════════════════════════════════════ -->
+  <div class="pg-history-wrap">
+    <div class="pg-history-hdr">
+      <span class="pg-history-title">Recent Scans</span>
+      <button id="pg-clear" class="pg-text-btn">Clear</button>
+    </div>
+    <div id="pg-history" class="pg-history-list">
+      <div class="pg-history-empty">No scans yet</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════���═══════════════════════
+       FOOTER ACTIONS
+  ════════════════════════════════════════════════════════ -->
+  <div class="pg-footer">
+    <button id="pg-scan-btn" class="pg-btn-primary">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+        <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Scan Page
+    </button>
+    <button id="pg-dashboard-btn" class="pg-btn-secondary">Dashboard ↗</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
