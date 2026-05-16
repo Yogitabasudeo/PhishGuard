@@ -1,0 +1,49 @@
+# ============================================================
+# PhishGuard Backend — Python Dependencies
+# Install: pip install -r requirements.txt
+# ============================================================
+
+# ── Web Framework ────────────────────────────────────────────
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+
+# ── Async HTTP ───────────────────────────────────────────────
+httpx==0.25.2
+aiohttp==3.9.1
+
+# ── ML / Data Science ────────────────────────────────────────
+xgboost==2.0.2
+scikit-learn==1.3.2
+pandas==2.1.4
+numpy==1.26.2
+joblib==1.3.2
+imbalanced-learn==0.11.0
+
+# ── Data Validation / Serialization ─────────────────────────
+pydantic==2.5.2
+pydantic-settings==2.1.0
+
+# ── Domain / URL Analysis ────────────────────────────────────
+tldextract==5.1.1
+python-whois==0.8.0
+dnspython==2.4.2
+
+# ── Fuzzy Matching ───────────────────────────────────────────
+rapidfuzz==3.5.2
+
+# ── SSL / Certificates ───────────────────────────────────────
+pyOpenSSL==23.3.0
+cryptography==41.0.7
+
+# ── Database ─────────────────────────────────────────────────
+sqlalchemy==2.0.23
+aiosqlite==0.19.0
+
+# ── Utilities ────────────────────────────────────────────────
+python-dotenv==1.0.0
+requests==2.31.0
+cachetools==5.3.2
+loguru==0.7.2
+rich==13.7.0           # for pretty console output during training
+typer==0.9.0           # CLI for training commands

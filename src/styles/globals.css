@@ -1,0 +1,50 @@
+/* PhishGuard - Global Styles
+   Background and text adapt to the active .theme-* class on <html>
+   via the --color-slate-* CSS variable overrides in theme.css          */
+
+html, body, #root {
+  background-color: var(--color-slate-950);
+  min-height: 100vh;
+  color: var(--color-slate-100);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Scrollbar — adapts to theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-slate-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate-700);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-slate-600);
+}
+
+/* Smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Remove default select styles */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* Smooth theme transitions on key elements */
+.theme-light *,
+.theme-dark *,
+.theme-midnight * {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}

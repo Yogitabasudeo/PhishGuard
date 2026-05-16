@@ -1,0 +1,356 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PhishGuard — 3-Theme System
+   Applied via class on <html>: theme-light | theme-dark | theme-midnight
+
+   Strategy: Override Tailwind v4's built-in --color-slate-* CSS variables
+   per theme class. Since Tailwind v4 generates utilities like:
+     .bg-slate-950 { background-color: var(--color-slate-950); }
+   overriding the variable inside a theme class automatically updates ALL
+   components that use those Tailwind utilities — no component edits needed.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── MIDNIGHT (default · deep cyber-navy · SOC/hacker aesthetic) ─────────── */
+:root,
+.theme-midnight {
+  /* Backgrounds: near-black with a deep navy blue undertone */
+  --color-slate-950: #020c18;
+  --color-slate-900: #050f20;
+  --color-slate-800: #0a1628;
+  --color-slate-700: #0f2040;
+  --color-slate-600: #1e3a60;
+
+  /* Text: cool whites with subtle blue-gray tones */
+  --color-slate-500: #3d617f;
+  --color-slate-400: #6b8aaa;
+  --color-slate-300: #94b4cc;
+  --color-slate-200: #c8dce9;
+  --color-slate-100: #e0edf5;
+  --color-slate-50:  #f0f8ff;
+
+  /* Vibrant neon-cyan accent for the cyber feel */
+  --color-cyan-500: #06b6d4;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-200: #a5f3fc;
+
+  /* shadcn semantic tokens */
+  --background: #020c18;
+  --foreground: #e0edf5;
+  --card: #050f20;
+  --card-foreground: #e0edf5;
+  --popover: #050f20;
+  --popover-foreground: #e0edf5;
+  --primary: #22d3ee;
+  --primary-foreground: #020c18;
+  --secondary: #0a1628;
+  --secondary-foreground: #94b4cc;
+  --muted: #0a1628;
+  --muted-foreground: #6b8aaa;
+  --accent: #0f2040;
+  --accent-foreground: #e0edf5;
+  --destructive: #ef4444;
+  --border: #0f2040;
+  --input: #0a1628;
+  --ring: #22d3ee;
+}
+
+/* ── DARK (GitHub-Dark-style · balanced neutral grays) ───────────────────── */
+.theme-dark {
+  /* Backgrounds: pure neutral dark grays — no blue/navy undertone */
+  --color-slate-950: #0d1117;
+  --color-slate-900: #161b22;
+  --color-slate-800: #21262d;
+  --color-slate-700: #30363d;
+  --color-slate-600: #484f58;
+
+  /* Text: warm light grays */
+  --color-slate-500: #6e7681;
+  --color-slate-400: #8b949e;
+  --color-slate-300: #b1bac4;
+  --color-slate-200: #c9d1d9;
+  --color-slate-100: #e6edf3;
+  --color-slate-50:  #f0f6fc;
+
+  /* Slightly cooler cyan to complement the neutral palette */
+  --color-cyan-500: #0891b2;
+  --color-cyan-400: #06b6d4;
+  --color-cyan-300: #22d3ee;
+  --color-cyan-200: #67e8f9;
+
+  /* shadcn semantic tokens */
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --card: #161b22;
+  --card-foreground: #e6edf3;
+  --popover: #161b22;
+  --popover-foreground: #e6edf3;
+  --primary: #06b6d4;
+  --primary-foreground: #0d1117;
+  --secondary: #21262d;
+  --secondary-foreground: #8b949e;
+  --muted: #21262d;
+  --muted-foreground: #6e7681;
+  --accent: #30363d;
+  --accent-foreground: #e6edf3;
+  --destructive: #f85149;
+  --border: #30363d;
+  --input: #21262d;
+  --ring: #06b6d4;
+}
+
+/* ── LIGHT (clean · professional · accessibility-first) ─────────────────── */
+.theme-light {
+  /* Backgrounds: light blue-gray — inverted slate scale */
+  --color-slate-950: #f0f4f8;   /* main bg  — lightest */
+  --color-slate-900: #e4ecf4;   /* sidebar / card bg */
+  --color-slate-800: #d6e2ee;   /* elevated card bg */
+  --color-slate-700: #bccfdf;   /* borders */
+  --color-slate-600: #8fafca;   /* subtle borders / muted elements */
+
+  /* Text: dark readable tones — reversed order from dark themes */
+  --color-slate-500: #5c7a96;   /* muted text */
+  --color-slate-400: #3d5a73;   /* secondary text */
+  --color-slate-300: #2a4459;   /* body text */
+  --color-slate-200: #1a2f40;   /* primary text */
+  --color-slate-100: #0d1e2b;   /* darkest text */
+  --color-slate-50:  #060f16;   /* near-black */
+
+  /* Darker cyan shades — legible on white/light backgrounds */
+  --color-cyan-500: #0e7490;
+  --color-cyan-400: #0891b2;
+  --color-cyan-300: #06b6d4;
+  --color-cyan-200: #22d3ee;
+
+  /* shadcn semantic tokens */
+  --background: #f0f4f8;
+  --foreground: #0d1e2b;
+  --card: #ffffff;
+  --card-foreground: #0d1e2b;
+  --popover: #ffffff;
+  --popover-foreground: #0d1e2b;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #e4ecf4;
+  --secondary-foreground: #3d5a73;
+  --muted: #eef3f8;
+  --muted-foreground: #5c7a96;
+  --accent: #e0f2fe;
+  --accent-foreground: #0c4a6e;
+  --destructive: #dc2626;
+  --border: #bccfdf;
+  --input: #eef3f8;
+  --ring: #0891b2;
+
+  /* Light-mode-specific: white card surfaces for elevated elements */
+  --card-surface: #ffffff;
+}
+
+/* ── Light-mode polish: white card surfaces, shadow lift ─────────────────── */
+.theme-light .bg-slate-800\/40,
+.theme-light .bg-slate-800\/30,
+.theme-light .bg-slate-800\/50,
+.theme-light .bg-slate-800\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 1px 4px rgba(0, 40, 80, 0.08), 0 0 0 1px rgba(180, 200, 220, 0.4);
+}
+
+.theme-light .bg-slate-900 {
+  background-color: #e4ecf4 !important;
+}
+
+.theme-light .border-slate-700\/40,
+.theme-light .border-slate-700\/30 {
+  border-color: rgba(130, 165, 195, 0.4) !important;
+}
+
+/* Midnight: subtle cyan glow on card borders for the cyber aesthetic */
+.theme-midnight .border-slate-700\/40 {
+  border-color: rgba(6, 182, 212, 0.12) !important;
+}
+
+.theme-midnight .bg-slate-800\/40 {
+  background-color: rgba(10, 22, 40, 0.8) !important;
+  border-color: rgba(6, 182, 212, 0.08) !important;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
