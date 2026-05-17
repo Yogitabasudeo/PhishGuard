@@ -28,8 +28,8 @@ Extension: Chrome Extensions API
 
 ```bash
 npm install
-Start the frontend using:
 ```
+Start the frontend using:
 ```bash
 npm run dev
 ```
