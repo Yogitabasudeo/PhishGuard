@@ -20,3 +20,11 @@ Backend: FastAPI, SQLAlchemy
 ML: XGBoost, Scikit-learn  
 Database: PostgreSQL  
 Extension: Chrome Extensions API
+
+## 🚀 How to Run PhishGuard
+
+- Clone or download the repository and open the project folder in VS Code.
+- Open a new terminal in VS Code and run:
+
+```bash
+npm install
