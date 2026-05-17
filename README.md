@@ -28,3 +28,23 @@ Extension: Chrome Extensions API
 
 ```bash
 npm install
+Start the frontend using:
+```bash
+npm run dev
+Open the generated localhost link (usually http://localhost:5173/) in the browser.
+Build the Chrome Extension using:
+```bash
+npm run build:ext
+This will generate a dist-extension/ folder containing the extension files.
+Open Google Chrome and go to:
+```bash
+chrome://extensions/
+Enable Developer Mode from the top-right corner.
+Click Load unpacked.
+Select the generated dist-extension/ folder (NOT the main project folder).
+The PhishGuard extension is now installed and ready to use.
+Open any website and click the extension icon to scan URLs for phishing detection.
+Whenever changes are made to the extension/frontend code, rerun:
+```bash
+npm run build:ext
+Then refresh the extension from the Chrome Extensions page to apply updates.
